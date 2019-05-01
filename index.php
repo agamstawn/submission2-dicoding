@@ -1,13 +1,13 @@
 <?php
 
-require_once 'vendor/autoload.php';
-require_once "./random_string.php";
+// require_once 'vendor/autoload.php';
+// require_once "./random_string.php";
 
-use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+// use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+// use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+// use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+// use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+// use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 // $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
 
@@ -18,8 +18,8 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
 
 
-// if(isset($_POST['btn-upload']))
-// {
+if(isset($_POST['btn-upload']))
+{
 	
 // 	$createContainerOptions = new CreateContainerOptions();
 
@@ -90,17 +90,17 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 //     }
 
 
-	// $img = rand(1000,100000)."-".$_FILES['img']['name'];
-	// $img_loc = $_FILES['img']['tmp_name'];
-	// $folder="uploads/";
-	// if(move_uploaded_file($img_loc,$folder.$img))
-	// {
-	// 	echo "<script>alert('Upload Sukses!!!');</script>";
-	// }
-	// else
-	// {
-	// 	echo "<script>alert('Upload Gagal');</script>";
-	// } 
+	$img = rand(1000,100000)."-".$_FILES['img']['name'];
+	$img_loc = $_FILES['img']['tmp_name'];
+	$folder="uploads/";
+	if(move_uploaded_file($img_loc,$folder.$img))
+	{
+		echo "<script>alert('Upload Sukses!!!');</script>";
+	}
+	else
+	{
+		echo "<script>alert('Upload Gagal');</script>";
+	} 
 }
 
 ?>

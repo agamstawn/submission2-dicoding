@@ -1,7 +1,7 @@
 <?php
 
-// require_once 'vendor/autoload.php';
-// require_once "./random_string.php";
+require_once 'vendor/autoload.php';
+require_once "./random_string.php";
 
 // use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 // use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -88,6 +88,7 @@ if(isset($_POST['btn-upload']))
 //         $error_message = $e->getMessage();
 //         echo $code.": ".$error_message."<br />";
 //     }
+	// YQF2l8EOcMxCxZZMS2Qh4/a58DB3AAN32V5Yz/E8iLYdwhvJhZmMVj9CAwqUTdl0TZXL473Aw7xFaqZyj7YpfA==
 
 
 	$img = rand(1000,100000)."-".$_FILES['img']['name'];

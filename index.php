@@ -15,7 +15,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUN
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // // $fileToUpload = "HelloWorld.txt";
-$fileToUpload = $_FILES;
+$fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
 
 
 if(isset($_POST['btn-upload']))

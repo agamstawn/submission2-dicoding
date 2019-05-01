@@ -21,15 +21,15 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 if(isset($_POST['btn-upload']))
 {
 	
-// 	$createContainerOptions = new CreateContainerOptions();
+	$createContainerOptions = new CreateContainerOptions();
 
-// 	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+	$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
-//     // Set container metadata.
-//     $createContainerOptions->addMetaData("key1", "value1");
-//     $createContainerOptions->addMetaData("key2", "value2");
+    // Set container metadata.
+    $createContainerOptions->addMetaData("key1", "value1");
+    $createContainerOptions->addMetaData("key2", "value2");
 
-//     $containerName = "blockblobs".generateRandomString();
+    $containerName = "blockblobs".generateRandomString();
 
 //     try {
 //         // Create container.

@@ -136,7 +136,7 @@ if(isset($_POST['btn-upload']))
  
         // Request parameters.
         var params = {
-            "visualFeatures": "Categories,Description,Color",
+            "visualFeatures": "Categories,Description,Color,Tags",
             "details": "",
             "language": "en",
         };

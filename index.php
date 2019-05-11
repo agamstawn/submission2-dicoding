@@ -73,7 +73,7 @@ if(isset($_POST['btn-upload']))
         fpassthru($blob->getContentStream());
         echo "<br />";
 
-        echo "<td><img src='https://azurestoragedicoding.blob.core.windows.net/blockblobsadnrdr/Enno.jpg' width='100' height='100'></td>";
+        echo "<td><img src='' width='100' height='100'></td>";
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.

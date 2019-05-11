@@ -192,13 +192,13 @@ Image to analyze:
 
 <form action="" method="post" enctype="multipart/form-data">
 	<input type="file" name="img" id="img" />
-	<button type="submit" name="btn-upload">upload</button>
+	<button type="submit" name="btn-upload-1">upload</button>
 </form>
 <p>
 
 <input type="text" name="inputImage" id="inputImage"
      />
-<button onclick="processImage()" name="btn-upload">Analyze image</button>
+<button type="file" onclick="processImage()" name="btn-upload">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">

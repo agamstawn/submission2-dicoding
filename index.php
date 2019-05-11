@@ -196,9 +196,9 @@ Image to analyze:
 </form>
 <p>
 
-<input type="text" name="inputImage" id="inputImage"
+<input type="file" name="inputImage" id="inputImage"
      />
-<button type="file" onclick="processImage()" name="btn-upload">Analyze image</button>
+<button  onclick="processImage()" name="btn-upload">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">

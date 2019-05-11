@@ -14,8 +14,9 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUN
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-// // $fileToUpload = "HelloWorld.txt";
-$fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
+// $fileToUpload = "HelloWorld.txt";
+// $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
+$fileToUpload = $_FILES['inputImage']['name'];
 
 
 if(isset($_POST['btn-upload']))
@@ -71,6 +72,8 @@ if(isset($_POST['btn-upload']))
         $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
         echo "<br />";
+
+        echo "<td><img src='https://azurestoragedicoding.blob.core.windows.net/blockblobsadnrdr/Enno.jpg' width='100' height='100'></td>";
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
@@ -97,12 +100,15 @@ if(isset($_POST['btn-upload']))
 	// if(move_uploaded_file($img_loc,$folder.$img))
 	// {
 	// 	echo "<script>alert('Upload Sukses!!!');</script>";
-	// }
+	// }https://azurestoragedicoding.blob.core.windows.net/blockblobsadnrdr/Enno.jpg
 	// else
 	// {
 	// 	echo "<script>alert('Upload Gagal');</script>";
 	// } 
 }
+
+    
+
 
 ?>
 <!DOCTYPE html>
@@ -178,23 +184,21 @@ if(isset($_POST['btn-upload']))
     };
 </script>
 
-<h1>Fitur upload file to storage:</h1>
-<br />
+
+<h1>Fitur Upload and Vision:</h1>
+Enter the URL to an image, then click the <strong>Analyze image</strong> button.
+<br><br>
+Image to analyze:
 
 <form action="" method="post" enctype="multipart/form-data">
-	<input type="file" name="img" />
+	<input type="file" name="img" id="img" />
 	<button type="submit" name="btn-upload">upload</button>
 </form>
 <p>
 
-
-<h1>Fitur Vision:</h1>
-Enter the URL to an image, then click the <strong>Analyze image</strong> button.
-<br><br>
-Image to analyze:
 <input type="text" name="inputImage" id="inputImage"
-    value="http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg" />
-<button onclick="processImage()">Analyze image</button>
+     />
+<button onclick="processImage()" name="btn-upload">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">

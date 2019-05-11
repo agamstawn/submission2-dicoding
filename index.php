@@ -16,7 +16,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
-$fileToUpload = $_FILES['inputImage']['name'];
+$fileToUpload = $_FILES['img']['name'];
 
 
 if(isset($_POST['btn-upload']))
@@ -192,13 +192,13 @@ Image to analyze:
 
 <form action="" method="post" enctype="multipart/form-data">
 	<input type="file" name="img" id="img" />
-	<button type="submit" name="btn-upload-1">upload</button>
+	<button type="submit" name="btn-upload"  onclick="processImage()">upload</button>
 </form>
 <p>
 
-<input type="file" name="inputImage" id="inputImage"
+<input type="text" name="inputImage" id="inputImage"
      />
-<button  onclick="processImage()" name="btn-upload">Analyze image</button>
+<button onclick="processImage()">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">

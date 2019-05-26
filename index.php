@@ -194,7 +194,7 @@ Image to analyze:
 
 <form action="" method="post" enctype="multipart/form-data">
     <input type="file" name="img" id="img" />
-    <button type="submit" name="btn-upload"  onclick="processImage()">upload</button>
+    <button type="submit" name="btn-upload">upload</button>
 </form>
 <p>
 

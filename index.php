@@ -16,7 +16,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
-$fileToUpload = file_get_contents($_FILES['img']['name']);
+$fileToUpload = $_FILES['img']['name'];
 
 
 if(isset($_POST['btn-upload']))
@@ -72,6 +72,7 @@ if(isset($_POST['btn-upload']))
         echo "This is the content of the blob uploaded: ";
         $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
+        fpassthru($blob->getUrl())
         echo "<br />";
 
         echo "<td><img src='' width='100' height='100'></td>";

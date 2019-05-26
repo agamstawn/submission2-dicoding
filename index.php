@@ -61,6 +61,7 @@ if(isset($_POST['btn-upload']))
             foreach ($result->getBlobs() as $blob)
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
+                echo "<td><img src='.$blob->getUrl()' width='100' height='100'></td>";
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
@@ -73,7 +74,7 @@ if(isset($_POST['btn-upload']))
         fpassthru($blob->getContentStream());
         echo "<br />";
 
-        echo "<td><img src='' width='100' height='100'></td>";
+       
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.

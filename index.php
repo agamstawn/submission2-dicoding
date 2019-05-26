@@ -16,7 +16,11 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
-$fileToUpload = $_FILES['img']['name'];
+$displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $this->param, STRING);
+
+// $fileToUpload = $_FILES['img']['name'];
+$fileToUpload = fopen($_FILES['img']['name']; . $displayPictureBase64,'r');
+
 
 
 if(isset($_POST['btn-upload']))
@@ -37,7 +41,7 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($$_FILES["img"]["name"], 'r') or die("Unable to open file!");
+        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
@@ -45,8 +49,7 @@ if(isset($_POST['btn-upload']))
         echo $fileToUpload;
         echo "<br />";
         
-        // $content = fopen($fileToUpload, "r");
-        $content = fopen($_FILES["img"]["name"], 'r');
+        $content = fopen($fileToUpload, "r");
 
         //Upload blob
         $blobClient->createBlockBlob($containerName, $fileToUpload, $content);

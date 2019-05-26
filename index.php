@@ -16,10 +16,10 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
-$displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $_FILES['img']['name'], STRING);
+// $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $_FILES['img']['name'], STRING);
 
-// $fileToUpload = $_FILES['img']['name'];
-$fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
+$fileToUpload = file_get_contents($_FILES['img']['name']);
+// $fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
 
 
 

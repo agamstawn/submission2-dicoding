@@ -66,7 +66,7 @@ if(isset($_POST['btn-upload']))
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
                 // echo $blob->getUrl();
-                echo "<td><img src='".$blob->getUrl()."' width='100' height='100'></td>";
+                // echo "<td><img src='".$blob->getUrl()."' width='100' height='100'></td>";
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Submission 2 Dicoding</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
 </head>
 <body>
- 
 <script type="text/javascript">
     function processImage() {
         // **********************************************
@@ -69,8 +70,17 @@
         });
     };
 </script>
- 
-<h1>Analyze image:</h1>
+
+<h1>Fitur upload file to storage:</h1>
+<br />
+<form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="img" />
+    <button type="submit" name="btn-upload">upload</button>
+</form>
+<p>
+
+
+<h1>Fitur Vision:</h1>
 Enter the URL to an image, then click the <strong>Analyze image</strong> button.
 <br><br>
 Image to analyze:
@@ -91,5 +101,7 @@ Image to analyze:
         <img id="sourceImage" width="400" />
     </div>
 </div>
+
+
 </body>
 </html>

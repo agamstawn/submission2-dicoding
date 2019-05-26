@@ -37,7 +37,7 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
@@ -62,7 +62,7 @@ if(isset($_POST['btn-upload']))
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
                 echo $blob->getUrl();
-                // echo "<td><img src="$blob->getUrl()" width='100' height='100'></td>";
+                echo "<td><img src="$blob->getUrl()" width='100' height='100'></td>";
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());

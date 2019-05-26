@@ -18,7 +18,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
 // $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $_FILES['img']['name'], STRING);
 
-$fileToUpload = file_get_contents($_FILES['img']['name']);
+$fileToUpload = $_FILES['img']['name'];
 // $fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
 
 
@@ -66,7 +66,7 @@ if(isset($_POST['btn-upload']))
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
                 // echo $blob->getUrl();
-                // echo "<td><img src="$blob->getUrl()" width='100' height='100'></td>";
+                echo "<td><img src='$blob->getUrl()' width='100' height='100'></td>";
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());

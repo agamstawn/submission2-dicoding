@@ -61,7 +61,7 @@ if(isset($_POST['btn-upload']))
             foreach ($result->getBlobs() as $blob)
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
-                echo "haiahia"
+                echo "haiahia";
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
@@ -72,7 +72,7 @@ if(isset($_POST['btn-upload']))
         echo "This is the content of the blob uploaded: ";
         $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
-        // fpassthru($blob->getUrl());
+        fpassthru($blob->getUrl());
         echo "<br />";
 
         echo "<td><img src='' width='100' height='100'></td>";

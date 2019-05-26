@@ -19,7 +19,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $this->param, STRING);
 
 // $fileToUpload = $_FILES['img']['name'];
-$fileToUpload = fopen($_FILES['img']['name']; . $displayPictureBase64,'r');
+// $fileToUpload = fopen($_FILES['img']['name']; . $displayPictureBase64,'r');
 
 
 
@@ -41,7 +41,8 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
+        // $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
+        $myfile = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r') or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob

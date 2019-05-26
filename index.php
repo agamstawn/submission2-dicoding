@@ -16,7 +16,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 // $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
-$fileToUpload = $_FILES['img']['name'];
+$fileToUpload = file_get_contents($_FILES['img']['name']);
 
 
 if(isset($_POST['btn-upload']))
@@ -37,7 +37,7 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
+        $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
@@ -52,7 +52,7 @@ if(isset($_POST['btn-upload']))
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("HelloWorld");
+        // $listBlobsOptions->setPrefix("HelloWorld");
 
         echo "These are the blobs present in the container: ";
 
@@ -61,6 +61,7 @@ if(isset($_POST['btn-upload']))
             foreach ($result->getBlobs() as $blob)
             {
                 echo $blob->getName().": ".$blob->getUrl()."<br />";
+                echo "haiahia"
             }
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());

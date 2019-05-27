@@ -51,7 +51,7 @@ if(isset($_POST['btn-upload']))
         echo $myfile;
         echo "<br />";
         
-        $content = fopen($myfile, "r");
+        $content = fopen($fileToUpload.'', "r");
         // $content = file_get_contents($_FILES["img"]["name"]);
         // $fileClient->createFileFromContentAsync($shareName, $contentloc, $content, null);
         //Upload blob

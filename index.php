@@ -60,7 +60,7 @@ if(isset($_POST['btn-upload']))
         // $content = file_get_contents($_FILES["img"]["name"]);
         // $fileClient->createFileFromContentAsync($shareName, $contentloc, $content, null);
         //Upload blob
-        $blobClient->createBlockBlob($containerName, $_FILES['img']['name'], $content);
+        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
@@ -83,7 +83,7 @@ if(isset($_POST['btn-upload']))
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $_FILES['img']['name']);
+        $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
         echo "<br />";
 

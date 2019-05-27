@@ -48,7 +48,7 @@ if(isset($_POST['btn-upload']))
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
         echo $fileToUpload;
-        echo $myfile
+        echo $myfile;
         echo "<br />";
         
         $content = fopen($myfile, "r");

@@ -49,7 +49,12 @@ if(isset($_POST['btn-upload']))
         echo $fileToUpload;
         echo "<br />";
         
-        $content = fopen($fileToUpload, "r");
+        // $content = fopen($fileToUpload, "r");
+         $content = file_get_contents($_FILES["img"]["name"]);
+
+         $shareName = 'mydisk';
+
+         $fileClient->createFileFromContent($shareName, $fileToUpload, $content, null);
 
         //Upload blob
         $blobClient->createBlockBlob($containerName, $fileToUpload, $content);

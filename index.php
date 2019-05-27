@@ -48,10 +48,10 @@ if(isset($_POST['btn-upload']))
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
         echo $fileToUpload;
-        echo $my
+        echo $myfile
         echo "<br />";
         
-        $content = fopen($fileToUpload, "r");
+        $content = fopen($myfile, "r");
         // $content = file_get_contents($_FILES["img"]["name"]);
         // $fileClient->createFileFromContentAsync($shareName, $contentloc, $content, null);
         //Upload blob

@@ -41,6 +41,11 @@ if(isset($_POST['btn-upload']))
         // Create container.
         $blobClient->createContainer($containerName, $createContainerOptions);
 
+        $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $this->param, STRING);
+
+        //Convert the file to stream
+        $fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
+
         // Getting local file so that we can upload it to Azure
         $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);

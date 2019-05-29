@@ -24,7 +24,22 @@ $fileToUpload = $_FILES['img']['name'];
 
 
 if(isset($_POST['btn-upload']))
-{
+{   
+    $uploaddir = '/var/www/uploads/'; /* <--- Lokasi upload*/
+    $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+
+    echo '<pre>';
+    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+        echo "sukses";
+    } else {
+        echo "gagal";
+    }
+
+    echo 'Hasil :';
+    print_r($_FILES);
+
+    print "</pre>";
+
     
     $createContainerOptions = new CreateContainerOptions();
 
@@ -35,31 +50,22 @@ if(isset($_POST['btn-upload']))
     $createContainerOptions->addMetaData("key2", "value2");
 
     $containerName = "blockblobs".generateRandomString();
-    // $shareName = 'mydisk';
 
     try {
         // Create container.
         $blobClient->createContainer($containerName, $createContainerOptions);
 
-        // $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $this->param, STRING);
-
-//Convert the file to stream
-// $fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
-
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($_FILES['img']['name'], "r") or die("Unable to open file!");
+        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
         echo $fileToUpload;
-        echo $myfile;
-        echo $_FILES['img']['name'];
         echo "<br />";
         
-        $content = fopen($_FILES['img']['name'], "r");
-        // $content = file_get_contents($_FILES["img"]["name"]);
-        // $fileClient->createFileFromContentAsync($shareName, $contentloc, $content, null);
+        $content = fopen($fileToUpload, "r");
+
         //Upload blob
         $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 
@@ -84,7 +90,7 @@ if(isset($_POST['btn-upload']))
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $_FILES['img']['name']);
+        $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
         echo "<br />";
 

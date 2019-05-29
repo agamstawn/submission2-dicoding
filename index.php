@@ -29,7 +29,7 @@ if(isset($_POST['btn-upload']))
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
 
     echo '<pre>';
-    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+    if (file_get_contents($_FILES['img']['tmp_name'], $uploadfile)) {
         echo "sukses";
     } else {
         echo "gagal";

@@ -92,7 +92,7 @@ if(isset($_POST['btn-upload']))
         // Get blob.
         echo "This is the content of the blob uploaded: ";
         $blob = $blobClient->getBlob($containerName, $fileToUpload);
-        fpassthru($blob->getContentStream());
+        // fpassthru($blob->getContentStream());
         echo "<br />";
 
        

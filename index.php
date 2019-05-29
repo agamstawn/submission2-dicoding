@@ -65,8 +65,8 @@ if(isset($_POST['btn-upload']))
         echo $uploadfile;
         echo "<br />";
         
-        // $content = fopen($uploadfile, "r");
-        $content = file_get_contents($uploadfile);
+        $content = fopen($uploadfile, "r");
+        // $content = file_get_contents($uploadfile);
 
         //Upload blob
         $blobClient->createBlockBlob($containerName, $uploadfile, $content);

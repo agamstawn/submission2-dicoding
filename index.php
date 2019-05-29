@@ -14,7 +14,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUN
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-// $fileToUpload = "HelloWorld.txt";
+// $uploadfile = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
 // $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $_FILES['img']['name'], STRING);
 
@@ -29,7 +29,7 @@ if(isset($_POST['btn-upload']))
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
 
     echo '<pre>';
-    if (file_get_contents($_FILES['img']['tmp_name'], $uploadfile)) {
+    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
         echo "sukses";
     } else {
         echo "gagal";
@@ -56,18 +56,18 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+        $myfile = fopen($uploadfile, "r") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $fileToUpload;
+        echo $uploadfile;
         echo "<br />";
         
-        $content = fopen($fileToUpload, "r");
+        $content = fopen($uploadfile, "r");
 
         //Upload blob
-        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+        $blobClient->createBlockBlob($containerName, $uploadfile, $content);
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
@@ -90,7 +90,7 @@ if(isset($_POST['btn-upload']))
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $fileToUpload);
+        $blob = $blobClient->getBlob($containerName, $uploadfile);
         fpassthru($blob->getContentStream());
         echo "<br />";
 

@@ -14,22 +14,23 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUN
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-// $uploadfile = "HelloWorld.txt";
+// $fileToUpload = "HelloWorld.txt";
 // $fileToUpload = rand(1000,100000)."-".$_FILES['img']['name'];
 // $displayPictureBase64 = $this->ValidateParameter('DisplayPicture', $_FILES['img']['name'], STRING);
 
-$fileToUpload = $_FILES['img']['name'];
+
 // $fileToUpload = fopen('data:image/jpeg;base64,' . $displayPictureBase64,'r');
 
 
 
 if(isset($_POST['btn-upload']))
 {   
-    $uploaddir = '/var/www/uploads/'; /* <--- Lokasi upload*/
-    $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+    // $uploaddir = '/var/www/uploads/'; /* <--- Lokasi upload*/
+    // $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+    $fileToUpload = $_FILES['img']['name'];
 
     echo '<pre>';
-    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+    if (move_uploaded_file($_FILES['img']['tmp_name'], $fileToUpload)) {
         echo "sukses";
     } else {
         echo "gagal";
@@ -56,20 +57,18 @@ if(isset($_POST['btn-upload']))
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($uploadfile, "w") or die("Unable to open file!");
-        // $myfile = file_get_contents($uploadfile) or die("Unable to open file!");
+        $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
         fclose($myfile);
         
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $uploadfile;
+        echo $fileToUpload;
         echo "<br />";
         
-        $content = fopen($uploadfile, "r");
-        // $content = file_get_contents($uploadfile);
+        $content = fopen($fileToUpload, "r");
 
         //Upload blob
-        $blobClient->createBlockBlob($containerName, $uploadfile, $content);
+        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
@@ -92,7 +91,7 @@ if(isset($_POST['btn-upload']))
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $uploadfile);
+        $blob = $blobClient->getBlob($containerName, $fileToUpload);
         fpassthru($blob->getContentStream());
         echo "<br />";
 
